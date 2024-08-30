@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../../util/app_constants/assets/app_assets.dart';
-import '../../../../util/app_constants/colors/app_colors.dart';
-import '../../../../util/app_widgets/buttons/custom_elevated_button.dart';
+import '../../../../config/util/app_constants/assets/app_assets.dart';
+import '../../../../config/util/app_constants/colors/app_colors.dart';
+import '../../../../config/util/app_widgets/buttons/custom_elevated_button.dart';
 
 class OtpView extends StatelessWidget {
   OtpView({Key? key, required this.phoneNumber}) : super(key: key);

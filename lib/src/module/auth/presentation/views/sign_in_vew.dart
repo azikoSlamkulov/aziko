@@ -6,17 +6,17 @@ import 'package:aziko/src/module/auth/presentation/logic/password_cubit/password
 import 'package:aziko/src/module/auth/presentation/logic/timer_cubit/timer_cubit.dart';
 import 'package:aziko/src/module/auth/presentation/views/sign_in_otp_view.dart';
 import 'package:aziko/src/module/auth/presentation/views/sign_up_view.dart';
-import 'package:aziko/src/util/app_constants/spaces/spaces.dart';
+import 'package:aziko/src/config/util/app_constants/spaces/spaces.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../util/app_constants/assets/app_assets.dart';
-import '../../../../util/app_constants/colors/app_colors.dart';
-import '../../../../util/app_widgets/buttons/custom_elevated_button.dart';
-import '../../../../util/app_widgets/inputs/custom_text_form_field.dart';
-import '../../../../util/app_widgets/others/custom_divider.dart';
+import '../../../../config/util/app_constants/assets/app_assets.dart';
+import '../../../../config/util/app_constants/colors/app_colors.dart';
+import '../../../../config/util/app_widgets/buttons/custom_elevated_button.dart';
+import '../../../../config/util/app_widgets/inputs/custom_text_form_field.dart';
+import '../../../../config/util/app_widgets/others/custom_divider.dart';
 import '../widgets/btn_facebook_widget.dart';
 import '../widgets/btn_google_widget.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../../../../../core/data/local/sharedpreferences/local_storage.dart';
-import '../../../../../util/app_constants/texts/app_texts.dart';
+import '../../../../../config/util/app_constants/texts/app_texts.dart';
 import '../../models/user_model.dart';
 
 abstract class LocalUser {

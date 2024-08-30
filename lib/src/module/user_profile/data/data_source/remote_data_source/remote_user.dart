@@ -55,6 +55,7 @@ class RemoteUserImpl implements RemoteUser {
     return await firestore.update(
       objectEntity: user,
       objectModel: UserModel(),
+      docId: user.id,
       collectionName: 'users',
     );
   }

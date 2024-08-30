@@ -49,17 +49,17 @@ class AppRouter {
     ],
     errorBuilder: (context, state) => ErrorPage(error: state.error.toString()),
     redirect: (context, state) {
-      final homeLocation = state.subloc == APP_PAGE.home.toPath;
-      final loadingLocation = state.subloc == APP_PAGE.loading.toPath;
-      final signInLocation = state.subloc == APP_PAGE.login.toPath;
-      final errorLocation = state.subloc == APP_PAGE.error.toPath;
+      final homeLocation = state.matchedLocation == APP_PAGE.home.toPath;
+      final loadingLocation = state.matchedLocation == APP_PAGE.loading.toPath;
+      final signInLocation = state.matchedLocation == APP_PAGE.login.toPath;
+      final errorLocation = state.matchedLocation == APP_PAGE.error.toPath;
 
       final isLoading = authBloc.state is AuthLoadingState;
       final isAuthenticated = authBloc.state is AuthenticatedState;
       final isUnAuthenticated = authBloc.state is UnAuthenticatedState;
 
-      final isGoingToLoading = state.subloc == loadingLocation;
-      final isGoingToSignIn = state.subloc == signInLocation;
+      final isGoingToLoading = state.matchedLocation == loadingLocation;
+      final isGoingToSignIn = state.matchedLocation == signInLocation;
       //final isGoingToOnboard = state.subloc == onboardLocation;
 
       if (isLoading) {

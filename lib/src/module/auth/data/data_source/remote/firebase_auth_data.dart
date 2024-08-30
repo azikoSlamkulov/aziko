@@ -249,6 +249,7 @@ class FirebaseAuthDataImpl implements FirebaseAuthData {
       photoURL: user.photoURL,
     );
     return await firestore.create(
+      docId: user.uid,
       objectModel: currentUser,
       collectionName: 'users',
     );

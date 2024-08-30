@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../util/app_constants/assets/app_assets.dart';
+import '../../../../config/util/app_constants/assets/app_assets.dart';
 
 class WidgetBtnGoogle extends StatelessWidget {
   final VoidCallback? onTap;

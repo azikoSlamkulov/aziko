@@ -1,4 +1,4 @@
-import 'package:aziko/src/util/app_constants/colors/app_colors.dart';
+import 'package:aziko/src/config/util/app_constants/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {

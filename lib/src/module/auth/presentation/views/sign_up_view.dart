@@ -4,15 +4,15 @@ import 'package:aziko/src/module/auth/presentation/views/sign_in_vew.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../locator.dart';
-import '../../../../util/app_constants/colors/app_colors.dart';
-import '../../../../util/app_widgets/buttons/custom_elevated_button.dart';
-import '../../../../util/app_widgets/inputs/custom_text_form_field.dart';
-import '../../../../util/app_widgets/others/circle_profile_widget.dart';
-import '../../../../util/app_widgets/others/custom_divider.dart';
-import '../../../../util/app_widgets/progress/progress.dart';
-import '../../../home/views/admin_view.dart';
-import '../../../home/views/home_view.dart';
+import '../../../../config/locator.dart';
+import '../../../../config/util/app_constants/colors/app_colors.dart';
+import '../../../../config/util/app_widgets/buttons/custom_elevated_button.dart';
+import '../../../../config/util/app_widgets/inputs/custom_text_form_field.dart';
+import '../../../../config/util/app_widgets/others/circle_profile_widget.dart';
+import '../../../../config/util/app_widgets/others/custom_divider.dart';
+import '../../../../config/util/app_widgets/progress/progress.dart';
+import '../../../home/pages/admin_view.dart';
+import '../../../home/pages/home_page.dart';
 import '../logic/auth_bloc/auth_state.dart';
 
 // class SignUpView extends StatelessWidget {

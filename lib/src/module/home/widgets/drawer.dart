@@ -1,13 +1,13 @@
 import 'package:aziko/src/module/auth/presentation/logic/auth_bloc/auth_bloc.dart';
 import 'package:aziko/src/module/auth/presentation/logic/auth_bloc/auth_event.dart';
-import 'package:aziko/src/module/my_widgets/presentation/views/custom_widgets.dart';
-import 'package:aziko/src/module/my_widgets/presentation/views/material_widgets.dart';
-import 'package:aziko/src/util/app_constants/colors/app_colors.dart';
+import 'package:aziko/src/module/my_widgets/presentation/widgets/custom_widgets.dart';
+import 'package:aziko/src/module/my_widgets/presentation/widgets/material_widgets.dart';
+import 'package:aziko/src/config/util/app_constants/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../util/app_widgets/others/circle_profile_widget.dart';
+import '../../../config/util/app_widgets/others/circle_profile_widget.dart';
 import '../../auth/domain/entities/auth_user_entity.dart';
 
 import '../../user_profile/presentation/views/user_profile_view.dart';

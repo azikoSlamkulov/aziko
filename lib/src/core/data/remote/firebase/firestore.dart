@@ -7,6 +7,9 @@ abstract class FirestoreCore {
     required String id,
     required String collectionName,
   });
+  Future<String> getId({
+    required String collectionName,
+  });
   Future<T> get<T>({
     required String id,
     required String collectionName,
@@ -17,13 +20,14 @@ abstract class FirestoreCore {
     required T Function(Map<String, dynamic> body) fromJson,
   });
   Future<bool> create({
-    //required objectEntity,
+    required String docId,
     required objectModel,
     required String collectionName,
   });
   Future<bool> update({
-    required objectEntity,
+    objectEntity,
     required objectModel,
+    required String docId,
     required String collectionName,
   });
   Future<bool> delete({
@@ -45,6 +49,13 @@ class FirestoreCoreImpl implements FirestoreCore {
     DocumentSnapshot _doc =
         await firestoreDB.collection(collectionName).doc(id).get();
     return _doc.exists;
+  }
+
+  @override
+  Future<String> getId({
+    required String collectionName,
+  }) async {
+    return firestoreDB.collection(collectionName).doc().id;
   }
 
   @override
@@ -98,7 +109,7 @@ class FirestoreCoreImpl implements FirestoreCore {
 
   @override
   Future<bool> create({
-    //required objectEntity,
+    required String docId,
     required objectModel,
     required String collectionName,
   }) async {
@@ -106,14 +117,14 @@ class FirestoreCoreImpl implements FirestoreCore {
         .collection(collectionName)
         // .doc(user.userID)
         // .collection('profile')
-        .doc(objectModel.userID)
+        .doc(docId)
         .get()
-        .then((_doc) {
+        .then((doc) {
       final newObject = objectModel.toJson();
-      if (!_doc.exists) {
+      if (!doc.exists) {
         firestoreDB
             .collection(collectionName)
-            .doc(objectModel.userID)
+            .doc(docId)
             .set(newObject, SetOptions(merge: true));
       }
       return true;
@@ -154,21 +165,19 @@ class FirestoreCoreImpl implements FirestoreCore {
 
   @override
   Future<bool> update({
-    required objectEntity,
+    objectEntity,
     required objectModel,
+    required String docId,
     required String collectionName,
   }) async {
     return await firestoreDB
         .collection(collectionName)
-        .doc(objectEntity.userID)
+        .doc(docId)
         .get()
-        .then((_userDoc) {
-      final _newUser = objectModel.toJson();
-      if (_userDoc.exists) {
-        firestoreDB
-            .collection(collectionName)
-            .doc(objectEntity.userID)
-            .update(_newUser);
+        .then((doc) {
+      final newObject = objectModel.toJson();
+      if (doc.exists) {
+        firestoreDB.collection(collectionName).doc(docId).update(newObject);
       }
       return true;
     }).onError((error, stackTrace) {

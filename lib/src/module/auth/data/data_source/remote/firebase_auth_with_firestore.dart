@@ -228,6 +228,7 @@ class FirebaseAuthImpl implements FirebaseAuthWithFirestore {
       photoURL: user.photoURL,
     );
     return await firestore.create(
+      docId: user.uid,
       objectModel: currentUser,
       collectionName: 'users',
     );
