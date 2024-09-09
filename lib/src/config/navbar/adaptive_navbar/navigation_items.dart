@@ -1,43 +1,35 @@
-// import 'package:flutter/material.dart';
-
-// import '../../../util/app_constants/assets/app_assets.dart';
-
-//import '../../../lib.dart';
-
 import 'package:flutter/material.dart';
-
-import '../../util/app_constants/assets/app_assets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 List<CustomNavigationDestination> destinations = [
-  CustomNavigationDestination(
+  const CustomNavigationDestination(
     label: 'Home',
-    //icon: Icon(Icons.home),
-    icon: AppAssets.homeIcon(width: 30, height: 30),
-    selectedIcon: AppAssets.homeIconRed(width: 30, height: 30),
+    icon: FaIcon(FontAwesomeIcons.house),
+    selectedIcon: FaIcon(FontAwesomeIcons.house),
     route: '/',
   ),
-  CustomNavigationDestination(
+  const CustomNavigationDestination(
     label: 'Widgets',
-    icon: AppAssets.shopIcon(width: 30, height: 30),
-    selectedIcon: AppAssets.shopIconRed(width: 30, height: 30),
+    icon: FaIcon(FontAwesomeIcons.list),
+    selectedIcon: FaIcon(FontAwesomeIcons.list),
     route: '/widgets',
   ),
-  CustomNavigationDestination(
-    label: 'Test',
-    icon: AppAssets.bagIcon(width: 30, height: 30),
-    selectedIcon: AppAssets.bagIconRed(width: 30, height: 30),
-    route: '/test',
-  ),
-  CustomNavigationDestination(
+  const CustomNavigationDestination(
     label: 'Favorites',
-    icon: AppAssets.favoritesIcon(width: 30, height: 30),
-    selectedIcon: AppAssets.favoritesIconRed(width: 30, height: 30),
+    icon: FaIcon(FontAwesomeIcons.heart),
+    selectedIcon: FaIcon(FontAwesomeIcons.solidHeart),
     route: '/favorites',
   ),
-  CustomNavigationDestination(
+  const CustomNavigationDestination(
+    label: 'Test',
+    icon: FaIcon(FontAwesomeIcons.file),
+    selectedIcon: FaIcon(FontAwesomeIcons.solidFile),
+    route: '/test',
+  ),
+  const CustomNavigationDestination(
     label: 'Profile',
-    icon: AppAssets.profileIcon(width: 30, height: 30),
-    selectedIcon: AppAssets.profileIconRed(width: 30, height: 30),
+    icon: FaIcon(FontAwesomeIcons.user),
+    selectedIcon: FaIcon(FontAwesomeIcons.solidUser),
     route: '/profile',
   ),
 ];

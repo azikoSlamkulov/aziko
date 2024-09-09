@@ -5,8 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-import '../../../../config/util/app_widgets/dialogs/custom_snackbar_widget.dart';
-
 abstract class FirebaseAuthCore {
   // Получить текущего пользователя.
   Future<User?> getCurrentUser();

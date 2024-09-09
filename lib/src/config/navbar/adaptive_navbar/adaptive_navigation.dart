@@ -24,17 +24,9 @@ class AdaptiveNavigation extends StatelessWidget {
         /// Mobile Layout
         if (constraints.maxWidth <= 600) {
           return Scaffold(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: mobile,
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: selectedIndex,
-              backgroundColor: Colors.blue,
-              //backgroundColor: AppBarTheme.of(context).backgroundColor,
-              selectedItemColor: Colors.red,
-              unselectedItemColor: Colors.grey,
-              //unselectedLabelStyle: TextStyle(color: Colors.grey),
-              selectedFontSize: 12,
-              showUnselectedLabels: true,
               items: destinations
                   .map<BottomNavigationBarItem>(
                     (e) => BottomNavigationBarItem(

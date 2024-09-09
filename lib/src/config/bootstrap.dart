@@ -2,17 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:aziko/src/config/locator.dart';
-import 'package:aziko/src/module/auth/presentation/logic/password_cubit/password_cubit.dart';
-
-import 'package:aziko/src/module/test/bloc/test_bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../module/auth/presentation/logic/auth_bloc/auth_bloc.dart';
-import '../module/auth/presentation/logic/auth_bloc/auth_event.dart';
-import '../module/auth/presentation/logic/timer_cubit/timer_cubit.dart';
-import '../module/test/crud/presentation/logic/crud_test/crud_test.dart';
-import '../module/test/http/presentation/bloc/all_users_cubit/all_users_bloc.dart';
 import 'theme/bloc/theme_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -31,9 +23,6 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   await init();
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -44,19 +33,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       providers: [
         BlocProvider<ThemeBloc>(
           create: (context) => sl<ThemeBloc>(),
-        ),
-        BlocProvider<AuthBloc>(
-          create: (context) => sl<AuthBloc>()..add(GetCurrentUserEvent()),
-        ),
-        BlocProvider<TestBloc>(create: (context) => TestBloc()),
-        //BlocProvider<UserBloc>(create: (context) => sl<UserBloc>()),
-        BlocProvider<TimerCubit>(create: (context) => TimerCubit()),
-        BlocProvider<PasswordCubit>(create: (context) => PasswordCubit()),
-        BlocProvider<AllUsersCubit>(
-          create: (context) => sl<AllUsersCubit>()..loadAllUsers(),
-        ),
-        BlocProvider<CrudTestBloc>(
-          create: (context) => sl<CrudTestBloc>(),
         ),
       ],
       child: await builder(),
