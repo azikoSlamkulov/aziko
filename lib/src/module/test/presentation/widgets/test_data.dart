@@ -1,4 +1,5 @@
 import 'package:aziko/src/module/test/domain/entities/test_data_entity.dart';
+import 'package:aziko/src/module/test/presentation/pages/pages.dart';
 import 'package:aziko/src/module/test/presentation/widgets/widgets.dart';
 
 class TestData {
@@ -6,6 +7,10 @@ class TestData {
     const TestDataEntity(
       testName: 'Test widget',
       root: TestWidget(),
+    ),
+    const TestDataEntity(
+      testName: 'CRUD test',
+      root: CrudPage(),
     ),
   ];
 }

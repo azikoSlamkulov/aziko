@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/widgets/widgets.dart';
+
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({
     Key? key,
@@ -11,6 +13,7 @@ class FavoritesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Favorites Page'),
         centerTitle: true,
+        actions: const [CustomSwitchWidget()],
       ),
       body: const Center(
         child: Text('Favorites Page'),

@@ -95,6 +95,13 @@ abstract class FirestoreCore {
     required String firstDocId,
     required String secondDocId,
   });
+
+  // get Categories
+  Future<List<T>> getCategoriesList<T>({
+    required String typeName,
+    required String collectionName,
+    required T Function(Map<String, dynamic> body) fromJson,
+  });
 }
 
 // ------------------------------------------------------------------------------------------
@@ -395,6 +402,7 @@ class FirestoreCoreImpl implements FirestoreCore {
 
   //  ------ Get categories ----------------------------------------------------
 
+  @override
   Future<List<T>> getCategoriesList<T>({
     required String typeName,
     required String collectionName,

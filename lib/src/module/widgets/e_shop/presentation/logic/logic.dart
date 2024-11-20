@@ -1,0 +1,11 @@
+export 'big_image/big_image.dart';
+export 'brands/brands.dart';
+export 'categories/categories.dart';
+export 'category_toggle_btn/category_toggle_btn.dart';
+export 'colors_and_sizes/colors_and_sizes.dart';
+export 'colors_toggle_btn/colors_toggle_btn.dart';
+export 'image/image.dart';
+export 'product/product.dart';
+export 'sizes_toggle_btn/sizes_toggle_btn.dart';
+export 'tab_bar/tab_bar.dart';
+export 'type_toggle_btn/type_toggle_btn.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/widgets/widgets.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({
     Key? key,
@@ -11,6 +13,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile Page'),
         centerTitle: true,
+        actions: const [CustomSwitchWidget()],
       ),
       body: const Center(
         child: Text('Profile Page'),

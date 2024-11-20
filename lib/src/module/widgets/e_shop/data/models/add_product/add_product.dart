@@ -1,0 +1,9 @@
+export 'brand_model.dart';
+export 'category_model.dart';
+export 'product_color_model.dart';
+export 'product_datail_model.dart';
+export 'product_model.dart';
+export 'product_rating_model.dart';
+export 'product_review_model.dart';
+export 'product_size_model.dart';
+export 'product_small_image_model.dart';

@@ -1,2 +1,10 @@
-export 'domain/domain.dart';
+export 'animated_search_app_bar/animated_search_app_bar.dart';
+export 'animation_widgets/animation_widgets.dart';
+export 'e_shop/e_shop.dart';
 export 'presentation/presentation.dart';
+export 'swipeable_button_animation/swipeable_button_animation.dart';
+export 'widgets_data.dart';
+export 'widgets_data_entity.dart';
+export 'widgets_list_page.dart';
+export 'dialogs/dialogs.dart';
+export 'payment_method/payment_method.dart';

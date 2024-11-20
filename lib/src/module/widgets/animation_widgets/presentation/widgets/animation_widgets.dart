@@ -1,0 +1,15 @@
+export '../pages/detail_page.dart';
+export 'detailed_info_widget.dart';
+export 'expanded_content_widget.dart';
+export '../../data/hero_tag_data.dart';
+export 'hero_widget.dart';
+export 'image_widget.dart';
+export 'lat_long_widget.dart';
+export '../../domain/entites/location_model.dart';
+export 'location_widget.dart';
+export '../../data/locations_data.dart';
+export 'locations_widget.dart';
+export '../../domain/entites/review_model.dart';
+export '../../data/reviews_data.dart';
+export 'reviews_widget.dart';
+export 'stars_widget.dart';

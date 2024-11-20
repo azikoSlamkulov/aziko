@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:aziko/src/config/locator.dart';
+import 'package:aziko/src/core/domain/di/locator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../module/widgets/e_shop/e_shop.dart';
 import 'theme/bloc/theme_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -33,6 +34,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       providers: [
         BlocProvider<ThemeBloc>(
           create: (context) => sl<ThemeBloc>(),
+        ),
+        BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
+        // //BlocProvider<ProductCubit>(create: (context) => sl<ProductCubit>()),
+        BlocProvider<CategoriesBloc>(create: (context) => sl<CategoriesBloc>()),
+        BlocProvider<BrandsBloc>(create: (context) => sl<BrandsBloc>()),
+        BlocProvider<BigImageCubit>(
+          create: (context) => sl<BigImageCubit>(),
         ),
       ],
       child: await builder(),
