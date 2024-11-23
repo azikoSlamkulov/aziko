@@ -41,8 +41,8 @@ class ProductRepoImpl implements ProductRepo {
         productDatail: productDatailToModel(productID, productDatail),
       );
       return Right(isCreated);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -51,8 +51,8 @@ class ProductRepoImpl implements ProductRepo {
     try {
       final allProducts = await remoteProduct.getAllProducts();
       return Right(allProducts);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -64,8 +64,8 @@ class ProductRepoImpl implements ProductRepo {
       final productDatails =
           await remoteProduct.getProductDatails(productId: productId);
       return Right(productDatails);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 }

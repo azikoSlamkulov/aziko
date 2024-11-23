@@ -1,6 +1,8 @@
 import 'package:aziko/src/module/auth/presentation/widgets/action_button.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
+
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({
     super.key,
@@ -50,87 +52,61 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        width: 30,
-                        child: Divider(
-                          color: Colors.red,
-                          thickness: 2,
-                        ),
-                      ),
-                      SizedBox(height: 32),
+                      // const Text(
+                      //   'Sign up',
+                      //   style: TextStyle(
+                      //     //color: Colors.grey[700],
+                      //     color: Colors.black,
+                      //     fontSize: 24,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 8),
+                      // const SizedBox(
+                      //   width: 30,
+                      //   child: const Divider(
+                      //     color: Colors.red,
+                      //     thickness: 2,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 32),
                       TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Name',
+                        decoration: const InputDecoration(
+                          //hintText: 'Name',
                           // hintStyle: TextStyle(fontSize: 18),
                           label: Text('Name'),
                           //labelStyle: TextStyle(fontSize: 18),
                           suffixIcon: Icon(Icons.person_outlined),
-                          // enabledBorder: OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     color: Colors.white,
-                          //     width: 0.5,
-                          //     style: BorderStyle.solid,
-                          //   ),
-                          // ),
-                          // border: const OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     //color: Colors.white,
-                          //     width: 0.5,
-                          //     style: BorderStyle.solid,
-                          //   ),
-                          // ),
                         ),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Email',
+                        decoration: const InputDecoration(
+                          //hintText: 'Email',
                           // hintStyle: TextStyle(fontSize: 18),
                           label: Text('Email'),
                           //labelStyle: TextStyle(fontSize: 18),
                           suffixIcon: Icon(Icons.email_outlined),
-                          // enabledBorder: OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     color: Colors.white,
-                          //     width: 0.5,
-                          //     style: BorderStyle.solid,
-                          //   ),
-                          // ),
-                          // border: const OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     //color: Colors.white,
-                          //     width: 0.5,
-                          //     style: BorderStyle.solid,
-                          //   ),
-                          // ),
                         ),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Password',
+                        decoration: const InputDecoration(
+                          //hintText: 'Password',
                           //hintStyle: TextStyle(fontSize: 18),
                           label: Text('Password'),
                           //labelStyle: TextStyle(fontSize: 18),
                           suffixIcon: Icon(Icons.lock_clock_outlined),
                         ),
                       ),
-                      SizedBox(height: 64),
-                      actionButton('Sign Up'),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 64),
+                      actionButton('SIGN UP'),
+                      const SizedBox(height: 32),
                       GestureDetector(
                         onTap: () {
                           widget.onSignInSelected();
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -142,7 +118,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             ),
                             SizedBox(width: 8),
                             Text(
-                              'Sign In',
+                              'Login',
                               style: TextStyle(
                                 color: Colors.red,
                                 fontSize: 14,
@@ -150,13 +126,45 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                             ),
                             SizedBox(width: 8),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: Colors.red,
-                            ),
                           ],
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Or sign up with social account',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // WidgetBtnFacebook(onTap: () {}),
+                          // AppSized.w20,
+                          // WidgetBtnGoogle(
+                          //   onTap: () => BlocProvider.of<AuthBloc>(context).add(
+                          //     SignInWithGoogleEvent(),
+                          //   ),
+                          // ),
+                          IconButton(
+                            //iconSize: 50.h,
+                            icon: AppAssets.facebookLogo(width: 30, height: 30),
+                            onPressed: () {},
+                          ),
+                          const SizedBox(width: 30),
+                          IconButton(
+                            //iconSize: 47.h,
+                            icon: AppAssets.googleLogo(width: 27, height: 27),
+                            onPressed: () {
+                              // BlocProvider.of<AuthBloc>(context).add(
+                              //   SignInWithGoogleEvent(),
+                              // );
+                            },
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -22,8 +22,8 @@ class CategoriesRepoImpl implements CategoriesRepo {
         collectionName: collection,
       );
       return Right(allCategories);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -32,8 +32,8 @@ class CategoriesRepoImpl implements CategoriesRepo {
     try {
       final allCategories = await remoteCategories.getAllCategories();
       return Right(allCategories);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -52,8 +52,8 @@ class CategoriesRepoImpl implements CategoriesRepo {
         categoryName: category,
       );
       return Right(isCreated);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -66,8 +66,8 @@ class CategoriesRepoImpl implements CategoriesRepo {
         id: id,
       );
       return Right(isDelete);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 }

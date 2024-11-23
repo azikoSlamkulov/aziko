@@ -1,9 +1,8 @@
 import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 abstract class FirebaseAuthCore {
   // Получить текущего пользователя.
@@ -34,7 +33,9 @@ abstract class FirebaseAuthCore {
   Future<User?> sendEmailVerification();
 
   //  Отправить электронное письмо для сброса пароля.
-  Future<User?> sendPasswordResetEmail();
+  Future<bool> sendPasswordResetEmail({
+    required String email,
+  });
 
   // Удалить пользователя.
   Future<User?> deleteUser();
@@ -190,14 +191,27 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
 
   //  Отправить электронное письмо для сброса пароля.
   @override
-  Future<User?> sendPasswordResetEmail() {
-    // TODO: implement sendPasswordResetEmail
-    throw UnimplementedError();
-
+  Future<bool> sendPasswordResetEmail({
+    required String email,
+  }) async {
+    return await firebaseAuth
+        .sendPasswordResetEmail(email: email)
+        .then((value) => true);
     // Вы можете отправить электронное письмо для сброса пароля пользователю с помощью этого sendPasswordResetEmail() метода. Например:
-
-    // await FirebaseAuth.instance
-    //    .sendPasswordResetEmail(email: "user@example.com");
+    // try {
+    //   return await firebaseAuth
+    //       .sendPasswordResetEmail(email: "user@example.com")
+    //       .then((value) => true);
+    // } on FirebaseAuthException catch (e) {
+    //   throw Exception(e.toString());
+    // if (e.code == 'weak-password') {
+    //   throw Exception('The password provided is too weak.');
+    // } else if (e.code == 'email-already-in-use') {
+    //   return throw Exception('The account already exists for that email.');
+    // }
+    // } catch (e) {
+    //   return throw Exception(e.toString());
+    // }
 
     // Вы можете настроить шаблон электронной почты, который используется в разделе «Аутентификация» консоли Firebase на странице «Шаблоны электронной почты». См. Шаблоны электронной почты в Справочном центре Firebase.
 
@@ -226,19 +240,22 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
     required String email,
     required String password,
   }) async {
-    try {
-      return await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.toString());
-      // if (e.code == 'weak-password') {
-      //   throw Exception('The password provided is too weak.');
-      // } else if (e.code == 'email-already-in-use') {
-      //   return throw Exception('The account already exists for that email.');
-      // }
-    } catch (e) {
-      return throw Exception(e.toString());
-    }
+    return await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    // try {
+    //   return await firebaseAuth.createUserWithEmailAndPassword(
+    //       email: email, password: password);
+    // } on FirebaseAuthException catch (e) {
+    //   throw ServerException();
+    //   // if (e.code == 'weak-password') {
+    //   //   throw Exception('The password provided is too weak.');
+    //   // } else if (e.code == 'email-already-in-use') {
+    //   //   return throw Exception('The account already exists for that email.');
+    //   // }
+    // }
+    // catch (e) {
+    //   return throw Exception(e.toString());
+    // }
     //return null;
   }
 
@@ -248,18 +265,38 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
     required String email,
     required String password,
   }) async {
-    try {
-      return await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.toString());
-      // if (e.code == 'user-not-found') {
-      //   return throw Exception('No user found for that email.');
-      // } else if (e.code == 'wrong-password') {
-      //   return throw Exception('Wrong password provided for that user.');
-      // }
-    }
+    return await firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
+    // try {
+    //   return await firebaseAuth.signInWithEmailAndPassword(
+    //       email: email, password: password);
+    // } on FirebaseAuthException catch (e) {
+    //   throw Exception(e.toString());
+    // if (e.code == 'user-not-found') {
+    //   return throw Exception('No user found for that email.');
+    // } else if (e.code == 'wrong-password') {
+    //   return throw Exception('Wrong password provided for that user.');
+    // }
+    //}
   }
+
+  // @override
+  // Future<User> signInWithGoogle() async {
+  //   try {
+  //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //     final GoogleSignInAuthentication? googleAuth =
+  //         await googleUser?.authentication;
+  //     final authCredential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth?.accessToken,
+  //       idToken: googleAuth?.idToken,
+  //     );
+  //     User? result = firebaseAuth.currentUser;
+  //     return result!;
+  //     //return await signInWithCredential(credential: authCredential);
+  //   } catch (e) {
+  //     throw Exception(e.toString());
+  //   }
+  // }
 
   @override
   Future<UserCredential> signInWithGoogle() async {
@@ -294,14 +331,15 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) async {
         if (e.code == 'invalid-phone-number') {
-          showTopSnackBar(
-            Overlay.of(context!),
-            const CustomSnackBar.error(
-              message: "Предоставленный номер телефона недействителен.",
-            ),
-            animationDuration: const Duration(seconds: 3),
-            reverseAnimationDuration: const Duration(seconds: 1),
-          );
+          //TODO Сделать Snackbar
+          // showTopSnackBar(
+          //   context!,
+          //   const CustomSnackBar.error(
+          //     message: "Предоставленный номер телефона недействителен.",
+          //   ),
+          //   animationDuration: const Duration(seconds: 3),
+          //   reverseAnimationDuration: const Duration(seconds: 1),
+          // );
           // await CustomDialog().getDialog(
           //   title: "Ошибка!",
           //   contentText: "Предоставленный номер телефона недействителен.",
@@ -309,38 +347,38 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
           //   onPressed: Get.back,
           // );
         } else if (e.code == 'too-many-requests') {
-          showTopSnackBar(
-            Overlay.of(context!),
-            const CustomSnackBar.error(
-              message:
-                  "Мы заблокировали из-за необычной активности. Попробуйте позже.",
-            ),
-            animationDuration: const Duration(seconds: 3),
-            reverseAnimationDuration: const Duration(seconds: 1),
-          );
+          // showTopSnackBar(
+          //   context!,
+          //   const CustomSnackBar.error(
+          //     message:
+          //         "Мы заблокировали из-за необычной активности. Попробуйте позже.",
+          //   ),
+          //   animationDuration: const Duration(seconds: 3),
+          //   reverseAnimationDuration: const Duration(seconds: 1),
+          // );
         } else {
-          showTopSnackBar(
-            Overlay.of(context!),
-            const CustomSnackBar.error(
-              message: "Что-то пошло не так. Пожалуйста, попытайтесь еще раз",
-            ),
-            animationDuration: const Duration(seconds: 3),
-            reverseAnimationDuration: const Duration(seconds: 1),
-          );
+          // showTopSnackBar(
+          //   context!,
+          //   const CustomSnackBar.error(
+          //     message: "Что-то пошло не так. Пожалуйста, попытайтесь еще раз",
+          //   ),
+          //   animationDuration: const Duration(seconds: 3),
+          //   reverseAnimationDuration: const Duration(seconds: 1),
+          // );
         }
       },
       codeSent: (String? verificationId, int? resendToken) async {
         _verificationId = verificationId;
         _resendToken = resendToken;
         log('codeSent');
-        showTopSnackBar(
-          Overlay.of(context!),
-          const CustomSnackBar.info(
-            message: "Код отправлен. Пожалуйста, проверьте свои сообщения.",
-          ),
-          animationDuration: const Duration(seconds: 3),
-          reverseAnimationDuration: const Duration(seconds: 1),
-        );
+        // showTopSnackBar(
+        //   context!,
+        //   const CustomSnackBar.info(
+        //     message: "Код отправлен. Пожалуйста, проверьте свои сообщения.",
+        //   ),
+        //   animationDuration: const Duration(seconds: 3),
+        //   reverseAnimationDuration: const Duration(seconds: 1),
+        // );
       },
       forceResendingToken: _resendToken,
       timeout: const Duration(seconds: 120),
@@ -414,6 +452,7 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
     required AuthCredential credential,
   }) async {
     try {
+      // User? result = firebaseAuth.currentUser;
       return await firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw Exception(e);
@@ -448,10 +487,11 @@ class FirebaseAuthCoreImpl implements FirebaseAuthCore {
   // ----- Sign Out Impl-----
   @override
   Future<void> signOut() async {
-    try {
-      await firebaseAuth.signOut();
-    } catch (e) {
-      throw Exception(e);
-    }
+    return await firebaseAuth.signOut();
+    // try {
+    //   await firebaseAuth.signOut();
+    // } catch (e) {
+    //   throw Exception(e);
+    // }
   }
 }

@@ -10,7 +10,7 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.red,
   visualDensity: VisualDensity.adaptivePlatformDensity,
-  textTheme: GoogleFonts.secularOneTextTheme(),
+  //textTheme: GoogleFonts.metrophobicTextTheme(),
 
   // colorScheme: ColorScheme.fromSeed(
   //   primary: Colors.red,
@@ -41,25 +41,27 @@ ThemeData lightTheme = ThemeData(
   //   ),
   // ),
 
-  // inputDecorationTheme: InputDecorationTheme(
-  //   contentPadding: REdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-  //   labelStyle: const TextStyle(color: Colors.black26),
-  //   hintStyle: const TextStyle(color: Colors.black26),
-  //   // enabledBorder: OutlineInputBorder(
-  //   //   borderSide: BorderSide(
-  //   //     color: Colors.white,
-  //   //     width: 0.5,
-  //   //     style: BorderStyle.solid,
-  //   //   ),
-  //   // ),
-  //   border: const OutlineInputBorder(
-  //     borderSide: BorderSide(
-  //       //color: Colors.white,
-  //       width: 0.5,
-  //       style: BorderStyle.solid,
-  //     ),
-  //   ),
-  // ),
+  inputDecorationTheme: InputDecorationTheme(
+    contentPadding: REdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+    labelStyle: const TextStyle(color: Colors.black26),
+    hintStyle: const TextStyle(color: Colors.black26),
+    suffixIconColor: Colors.black38,
+    // enabledBorder: const OutlineInputBorder(
+    //   borderSide: BorderSide(
+    //     color: Colors.white,
+    //     width: 0.5,
+    //     style: BorderStyle.solid,
+    //   ),
+    // ),
+    // border: const OutlineInputBorder(
+    //   borderSide: BorderSide(
+    //     //color: Colors.white,
+    //     width: 0.5,
+    //     style: BorderStyle.solid,
+    //   ),
+    // ),
+  ),
+
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(

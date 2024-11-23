@@ -26,6 +26,19 @@ Future<void> init() async {
   //Bloc/Theme
   sl.registerFactory(() => ThemeBloc());
 
+  //Auth
+  // sl.registerFactory(
+  //   () => AuthBloc(
+  //     getCurrentUser: sl(),
+  //     updateCurrentUser: sl(),
+  //     signInWithEmail: sl(),
+  //     signInWithGoogle: sl(),
+  //     sendPasswordResetEmail: sl(),
+  //     signUp: sl(),
+  //     signOut: sl(),
+  //   ),
+  // );
+
   //Bloc/CRUD
   sl.registerFactory(
     () => CrudBloc(
@@ -67,6 +80,14 @@ Future<void> init() async {
   sl.registerFactory(() => PaymentMethodsCubit());
 
   //Usecases
+  //Auth
+  // sl.registerLazySingleton(() => GetCurrentUser(sl()));
+  // sl.registerLazySingleton(() => SignInWithEmail(sl()));
+  // sl.registerLazySingleton(() => SignInWithGoogle(sl()));
+  // sl.registerLazySingleton(() => SignUp(sl()));
+  // sl.registerLazySingleton(() => SendPasswordResetEmail(sl()));
+  // sl.registerLazySingleton(() => SignOut(sl()));
+
   //Usecases/CRUD
   sl.registerLazySingleton(() => GetAllObjects(sl()));
   sl.registerLazySingleton(() => GetObject(sl()));

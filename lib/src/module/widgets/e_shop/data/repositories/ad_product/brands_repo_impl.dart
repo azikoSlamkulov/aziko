@@ -13,13 +13,23 @@ class BrandsRepoImpl implements BrandsRepo {
 
   final RemoteBrands remoteBrands;
 
+  // @override
+  // Future<Either<Failure, List<BrandEntity>>> getAllBrands() async {
+  //   try {
+  //     final allBrands = await remoteBrands.getAllBrands();
+  //     return Right(allBrands);
+  //   } on ServerException {
+  //     return Left(ServerFailure());
+  //   }
+  // }
+
   @override
   Future<Either<Failure, List<BrandEntity>>> getAllBrands() async {
     try {
       final allBrands = await remoteBrands.getAllBrands();
       return Right(allBrands);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -30,8 +40,8 @@ class BrandsRepoImpl implements BrandsRepo {
       final isCreated =
           await remoteBrands.addBrand(brandName: brandName, id: brandID);
       return Right(isCreated);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -44,8 +54,8 @@ class BrandsRepoImpl implements BrandsRepo {
         id: id,
       );
       return Right(isDelete);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 }

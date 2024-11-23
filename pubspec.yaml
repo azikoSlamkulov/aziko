@@ -82,6 +82,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/icons/
     - assets/animation_widget/
     - assets/payment_card/
 

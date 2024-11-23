@@ -32,9 +32,16 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runApp(
     MultiBlocProvider(
       providers: [
+        /// Theme
         BlocProvider<ThemeBloc>(
           create: (context) => sl<ThemeBloc>(),
         ),
+
+        /// Auth
+        // BlocProvider<AuthBloc>(
+        //   create: (context) => sl<AuthBloc>()..add(GetCurrentUserEvent()),
+        // ),
+
         BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
         // //BlocProvider<ProductCubit>(create: (context) => sl<ProductCubit>()),
         BlocProvider<CategoriesBloc>(create: (context) => sl<CategoriesBloc>()),

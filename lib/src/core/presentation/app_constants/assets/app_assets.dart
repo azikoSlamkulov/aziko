@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppAssets {
   // static const String _illustrations = 'assets/png/illustrations';
-  // static const String _icons = 'assets/png/icons';
+  static const String _icons = 'assets/icons';
   // static const String _images = 'assets/images';
   //static const String _navBarIcons = 'assets/png/icons/navbar';
   static const String _payment_card = 'assets/payment_card';
@@ -10,6 +10,10 @@ class AppAssets {
   static final Map<String, String> _paths = {
     ///example
     ///'verification': '$_illustrations/emblem.svg',
+
+    'arrow_right': '$_icons/arrow_right.png',
+    'google_logo': '$_icons/google_logo.png',
+    'facebook_logo': '$_icons/facebook_logo.png',
 
     ///card
     'mastercard': '$_payment_card/mastercard.png',
@@ -19,6 +23,13 @@ class AppAssets {
     'helper_icon': '$_payment_card/help_outline.png',
     'chip_icon': '$_payment_card/chip.png',
   };
+
+  static Image arrowRight({required double width, required double height}) =>
+      Image.asset(_paths['arrow_right']!, width: width, height: height);
+  static Image googleLogo({double? width, double? height}) =>
+      Image.asset(_paths['google_logo']!, width: width, height: height);
+  static Image facebookLogo({double? width, double? height}) =>
+      Image.asset(_paths['facebook_logo']!, width: width, height: height);
 
   /// card
   static Image mastercard({required double width, required double height}) =>

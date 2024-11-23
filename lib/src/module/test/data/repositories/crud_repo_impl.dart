@@ -15,8 +15,8 @@ class CrudRepoImpl implements CrudRepo {
     try {
       final allObject = await remoteCrud.getAllObject();
       return Right(allObject);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -27,8 +27,8 @@ class CrudRepoImpl implements CrudRepo {
     try {
       final object = await remoteCrud.getObject(id: id);
       return Right(object);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -45,8 +45,8 @@ class CrudRepoImpl implements CrudRepo {
         ),
       );
       return Right(isAdded);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -61,8 +61,8 @@ class CrudRepoImpl implements CrudRepo {
         ),
       );
       return Right(isUpdate);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -73,8 +73,8 @@ class CrudRepoImpl implements CrudRepo {
         id: id,
       );
       return Right(isDelete);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 }

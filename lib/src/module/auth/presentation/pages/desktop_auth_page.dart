@@ -1,9 +1,11 @@
-import 'package:aziko/src/module/auth/presentation/widgets/sign_up_widget.dart';
+import 'package:aziko/src/module/auth/presentation/widgets/desktop_sign_up_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/sign_in_widget.dart';
+import '../../../../core/core.dart';
+import '../widgets/desktop_sign_in_widget.dart';
+import '../widgets/widgets.dart';
 
-enum Option { signIn, signUp }
+enum Option { signIn, signUp, passwordRecovery, social }
 
 class DesktopAuthPage extends StatefulWidget {
   const DesktopAuthPage({
@@ -106,27 +108,71 @@ class _DesktopAuthPageState extends State<DesktopAuthPage> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Text(
+                  selectedOption == Option.signIn
+                      ? 'LOGIN'
+                      : selectedOption == Option.signUp
+                          ? 'SIGN UP'
+                          : 'FORGOT PASSWORD',
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             AnimatedSwitcher(
-              duration: Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 500),
               transitionBuilder: (widget, animation) => ScaleTransition(
                 scale: animation,
                 child: widget,
               ),
-              child: selectedOption == Option.signIn
-                  ? SignInWidget(
-                      onSignUpSelected: () {
-                        setState(() {
-                          selectedOption = Option.signUp;
-                        });
-                      },
-                    )
-                  : SignUpWidget(
+              child: selectedOption == Option.signUp
+                  ? SignUpWidget(
                       onSignInSelected: () {
                         setState(() {
                           selectedOption = Option.signIn;
                         });
                       },
-                    ),
+                    )
+                  : selectedOption == Option.signIn
+                      ? SignInWidget(
+                          onSignUpSelected: () {
+                            setState(() {
+                              selectedOption = Option.signUp;
+                            });
+                          },
+                          onPasswordRecoverySelected: () {
+                            setState(() {
+                              selectedOption = Option.passwordRecovery;
+                            });
+                          },
+                          onSocialSelected: () {
+                            setState(() {
+                              selectedOption = Option.social;
+                            });
+                          },
+                        )
+                      : selectedOption == Option.social
+                          ? SignInWithSocialWidget(
+                              onCanceled: () {
+                                setState(() {
+                                  selectedOption = Option.signIn;
+                                });
+                              },
+                            )
+                          : PasswordRecoveryWidget(
+                              onCanceled: () {
+                                setState(() {
+                                  selectedOption = Option.signIn;
+                                });
+                              },
+                            ),
             ),
           ],
         ),

@@ -29,8 +29,8 @@ class ProductImageRepoImpl implements ProductImageRepo {
     try {
       final allBrands = await remoteProductImage.getAllProductSmallImages();
       return Right(allBrands);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -42,8 +42,8 @@ class ProductImageRepoImpl implements ProductImageRepo {
       final allBrands = await remoteProductImage.getAllProductBigImages(
           folderName: folderName);
       return Right(allBrands);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 
@@ -58,8 +58,8 @@ class ProductImageRepoImpl implements ProductImageRepo {
         fileName: fileName,
       );
       return Right(productImageUrl);
-    } on ServerException {
-      return Left(ServerFailure());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     }
   }
 }
