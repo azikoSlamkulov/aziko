@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/presentation/widgets/widgets.dart';
 import 'widgets_data.dart';
 
-class WidgetsListPage extends StatelessWidget {
-  const WidgetsListPage({
+class MobileWidgetsListPage extends StatelessWidget {
+  const MobileWidgetsListPage({
     Key? key,
   }) : super(key: key);
 

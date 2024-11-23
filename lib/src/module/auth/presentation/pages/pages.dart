@@ -1,1 +1,1 @@
-export 'sign_in_page.dart';
+export 'desktop_auth_page.dart';

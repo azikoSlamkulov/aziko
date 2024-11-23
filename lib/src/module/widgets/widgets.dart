@@ -5,6 +5,7 @@ export 'presentation/presentation.dart';
 export 'swipeable_button_animation/swipeable_button_animation.dart';
 export 'widgets_data.dart';
 export 'widgets_data_entity.dart';
-export 'widgets_list_page.dart';
+export 'mobile_widgets_list_page.dart';
+export 'desktop_widgets_list_page.dart';
 export 'dialogs/dialogs.dart';
 export 'payment_method/payment_method.dart';

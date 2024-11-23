@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //Theme.of(context).colorScheme.primary,
 //TextTheme textTheme = Theme.of(context).textTheme;
@@ -8,6 +9,8 @@ ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
   primaryColor: Colors.red,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  textTheme: GoogleFonts.secularOneTextTheme(),
 
   // colorScheme: ColorScheme.fromSeed(
   //   primary: Colors.red,
@@ -25,38 +28,38 @@ ThemeData lightTheme = ThemeData(
     actionsIconTheme: IconThemeData(size: 10),
     //titleTextStyle: TextStyle(color: Colors.red),
   ),
-  textTheme: TextTheme(
-    bodyLarge: TextStyle(
-      fontSize: 16.0.sp,
-      color: Colors.red,
-      fontWeight: FontWeight.bold,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 14.0.sp,
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
+  // textTheme: TextTheme(
+  //   bodyLarge: TextStyle(
+  //     fontSize: 16.0.sp,
+  //     color: Colors.red,
+  //     fontWeight: FontWeight.bold,
+  //   ),
+  //   bodyMedium: TextStyle(
+  //     fontSize: 14.0.sp,
+  //     color: Colors.black,
+  //     fontWeight: FontWeight.bold,
+  //   ),
+  // ),
 
-  inputDecorationTheme: InputDecorationTheme(
-    contentPadding: REdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-    labelStyle: const TextStyle(color: Colors.black26),
-    hintStyle: const TextStyle(color: Colors.black26),
-    // enabledBorder: OutlineInputBorder(
-    //   borderSide: BorderSide(
-    //     color: Colors.white,
-    //     width: 0.5,
-    //     style: BorderStyle.solid,
-    //   ),
-    // ),
-    border: const OutlineInputBorder(
-      borderSide: BorderSide(
-        //color: Colors.white,
-        width: 0.5,
-        style: BorderStyle.solid,
-      ),
-    ),
-  ),
+  // inputDecorationTheme: InputDecorationTheme(
+  //   contentPadding: REdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+  //   labelStyle: const TextStyle(color: Colors.black26),
+  //   hintStyle: const TextStyle(color: Colors.black26),
+  //   // enabledBorder: OutlineInputBorder(
+  //   //   borderSide: BorderSide(
+  //   //     color: Colors.white,
+  //   //     width: 0.5,
+  //   //     style: BorderStyle.solid,
+  //   //   ),
+  //   // ),
+  //   border: const OutlineInputBorder(
+  //     borderSide: BorderSide(
+  //       //color: Colors.white,
+  //       width: 0.5,
+  //       style: BorderStyle.solid,
+  //     ),
+  //   ),
+  // ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(

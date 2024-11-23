@@ -30,6 +30,7 @@ class AppRouter {
 
   late final GoRouter _goRouter = GoRouter(
     initialLocation: AppPage.home.toPath,
+
     routes: <GoRoute>[
       /// Loading
       GoRoute(
@@ -48,15 +49,16 @@ class AppRouter {
       GoRoute(
         path: AppPage.home.toPath,
         name: AppPage.home.toName,
-        pageBuilder: (context, state) => const MaterialPage<void>(
-          key: _pageKey,
-          child: RootLayout(
-            key: _scaffoldKey,
-            currentIndex: 0,
-            mobile: HomePage(),
-            tablet: HomePage(),
-          ),
-        ),
+        builder: (context, state) => const DesktopAuthPage(),
+        // pageBuilder: (context, state) => const MaterialPage<void>(
+        //   key: _pageKey,
+        //   child: RootLayout(
+        //     key: _scaffoldKey,
+        //     currentIndex: 0,
+        //     mobile: HomePage(),
+        //     tablet: HomePage(),
+        //   ),
+        // ),
       ),
 
       /// Widgets
@@ -68,8 +70,8 @@ class AppRouter {
           child: RootLayout(
             key: _scaffoldKey,
             currentIndex: 1,
-            mobile: WidgetsListPage(),
-            tablet: WidgetsListPage(),
+            mobile: MobileWidgetsListPage(),
+            tablet: DesktopWidgetsListPage(),
           ),
         ),
       ),

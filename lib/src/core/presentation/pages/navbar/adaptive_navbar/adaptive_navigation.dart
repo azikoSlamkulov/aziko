@@ -48,9 +48,20 @@ class AdaptiveNavigation extends StatelessWidget {
               NavigationRail(
                 extended: constraints.maxWidth >= 800,
                 minExtendedWidth: 180,
+                backgroundColor: Colors.red,
+                useIndicator: true,
+                indicatorColor: Colors.red,
                 selectedIndex: selectedIndex,
                 onDestinationSelected: onDestinationSelected,
-                selectedLabelTextStyle: const TextStyle(color: Colors.red),
+                selectedLabelTextStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                selectedIconTheme: const IconThemeData(color: Colors.white),
+                unselectedLabelTextStyle: const TextStyle(
+                  color: Colors.white54,
+                ),
+                unselectedIconTheme: const IconThemeData(color: Colors.white54),
                 destinations: destinations
                     .map(
                       (e) => NavigationRailDestination(
