@@ -59,33 +59,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     GetCurrentUserEvent event,
     Emitter<AuthState> emit,
   ) async {
-    final currentUser = await getCurrentUser.getCurrentUser();
-    currentUser.fold(
-      (error) =>
-          emit(AuthFailureState(error as ServerFailure, 'getCurrentUser')),
-      (user) {
-        if (user != null) {
-          emit(AuthenticatedState(user));
-        } else {
-          emit(UnAuthenticatedState());
-        }
-      },
-    );
+    emit(UnAuthenticatedState());
+    // final currentUser = await getCurrentUser.getCurrentUser();
+    // currentUser.fold(
+    //   (error) =>
+    //       emit(AuthFailureState(error as ServerFailure, 'getCurrentUser')),
+    //   (user) {
+    //     if (user != null) {
+    //       emit(AuthenticatedState(user));
+    //     } else {
+    //       emit(UnAuthenticatedState());
+    //     }
+    //   },
+    // );
   }
 
   void _signInWithEmail(
       SignInWithEmailEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
-    final user = await signInWithEmail(
-      SignInWithEmailParams(
-        email: event.email,
-        password: event.password,
-      ),
-    );
-    user.fold(
-      (error) => emit(AuthFailureState(error as ServerFailure, 'signIn')),
-      (user) => emit(AuthenticatedState(user)),
-    );
+    emit(AuthenticatedState(UserEntity()));
+    // final user = await signInWithEmail(
+    //   SignInWithEmailParams(
+    //     email: event.email,
+    //     password: event.password,
+    //   ),
+    // );
+    // user.fold(
+    //   (error) => emit(AuthFailureState(error as ServerFailure, 'signIn')),
+    //   (user) => emit(AuthenticatedState(user)),
+    // );
   }
 
   void _sendPassword(

@@ -1,7 +1,9 @@
 import 'package:aziko/src/module/auth/presentation/widgets/action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
+import '../../auth.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({
@@ -100,7 +102,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ),
                       ),
                       const SizedBox(height: 64),
-                      actionButton('SIGN UP'),
+                      actionButton('SIGN UP', () {
+                        // BlocProvider.of<AuthBloc>(context).add(
+                        //   SignInWithGoogleEvent(),
+                        // );
+                      }),
                       const SizedBox(height: 32),
                       GestureDetector(
                         onTap: () {
@@ -129,7 +135,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 25),
                       const Text(
                         'Or sign up with social account',
                         style: TextStyle(
@@ -141,13 +147,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // WidgetBtnFacebook(onTap: () {}),
-                          // AppSized.w20,
-                          // WidgetBtnGoogle(
-                          //   onTap: () => BlocProvider.of<AuthBloc>(context).add(
-                          //     SignInWithGoogleEvent(),
-                          //   ),
-                          // ),
                           IconButton(
                             //iconSize: 50.h,
                             icon: AppAssets.facebookLogo(width: 30, height: 30),

@@ -85,7 +85,7 @@ class _PasswordRecoveryWidgetState extends State<PasswordRecoveryWidget> {
                         ),
                       ),
                       const SizedBox(height: 64),
-                      actionButton('SEND'),
+                      actionButton('SEND', () {}),
                       const SizedBox(height: 32),
                       GestureDetector(
                         onTap: () {

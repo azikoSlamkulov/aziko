@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/domain/routes/routes.dart';
+import '../module/auth/auth.dart';
 import 'theme/theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = AppRouter().router;
+    final router = AppRouter(context.watch<AuthBloc>()).router;
 
     return ScreenUtilInit(
       designSize: const Size(393, 873), // note 12 pro

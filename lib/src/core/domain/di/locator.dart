@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../module/auth/auth.dart';
 import '../../../module/test/test.dart';
 import '../../../config/firebase_options.dart';
 import '../../data/local/sharedpreferences/local_storage.dart';
@@ -27,17 +28,17 @@ Future<void> init() async {
   sl.registerFactory(() => ThemeBloc());
 
   //Auth
-  // sl.registerFactory(
-  //   () => AuthBloc(
-  //     getCurrentUser: sl(),
-  //     updateCurrentUser: sl(),
-  //     signInWithEmail: sl(),
-  //     signInWithGoogle: sl(),
-  //     sendPasswordResetEmail: sl(),
-  //     signUp: sl(),
-  //     signOut: sl(),
-  //   ),
-  // );
+  sl.registerFactory(
+    () => AuthBloc(
+      getCurrentUser: sl(),
+      //updateCurrentUser: sl(),
+      signInWithEmail: sl(),
+      signInWithGoogle: sl(),
+      sendPasswordResetEmail: sl(),
+      signUp: sl(),
+      signOut: sl(),
+    ),
+  );
 
   //Bloc/CRUD
   sl.registerFactory(
@@ -81,12 +82,12 @@ Future<void> init() async {
 
   //Usecases
   //Auth
-  // sl.registerLazySingleton(() => GetCurrentUser(sl()));
-  // sl.registerLazySingleton(() => SignInWithEmail(sl()));
-  // sl.registerLazySingleton(() => SignInWithGoogle(sl()));
-  // sl.registerLazySingleton(() => SignUp(sl()));
-  // sl.registerLazySingleton(() => SendPasswordResetEmail(sl()));
-  // sl.registerLazySingleton(() => SignOut(sl()));
+  sl.registerLazySingleton(() => GetCurrentUser(sl()));
+  sl.registerLazySingleton(() => SignInWithEmail(sl()));
+  sl.registerLazySingleton(() => SignInWithGoogle(sl()));
+  sl.registerLazySingleton(() => SignUp(sl()));
+  sl.registerLazySingleton(() => SendPasswordResetEmail(sl()));
+  sl.registerLazySingleton(() => SignOut(sl()));
 
   //Usecases/CRUD
   sl.registerLazySingleton(() => GetAllObjects(sl()));
@@ -111,6 +112,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SetProductImage(sl()));
 
   //Repositories
+  // Auth
+  sl.registerLazySingleton<AuthRepo>(
+    () => AuthRepoImpl(
+      remoteAuth: sl(),
+      localAuth: sl(),
+    ),
+  );
+
   //Repositories/CRUD
   sl.registerLazySingleton<CrudRepo>(
     () => CrudRepoImpl(
@@ -141,6 +150,18 @@ Future<void> init() async {
   );
 
   //datasource
+  //datasource/auth
+  sl.registerLazySingleton<FirebaseAuthWithFirestore>(
+    () => FirebaseAuthImpl(
+      firebaseAuth: sl(),
+      firestore: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<LocalAuth>(
+    () => AuthSharedPreferencesImpl(authPreferences: sl()),
+  );
+
   //datasource/CRUD
   sl.registerLazySingleton<RemoteCrud>(
     () => RemoteCrudImpl(

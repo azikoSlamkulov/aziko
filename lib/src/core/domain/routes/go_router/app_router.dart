@@ -25,7 +25,8 @@ const _pageKey = ValueKey('_pageKey');
 const _scaffoldKey = ValueKey('_scaffoldKey');
 
 class AppRouter {
-  AppRouter();
+  final AuthBloc authBloc;
+  AppRouter(this.authBloc);
   GoRouter get router => _goRouter;
 
   late final GoRouter _goRouter = GoRouter(
@@ -45,20 +46,27 @@ class AppRouter {
         ),
       ),
 
+      /// Auth
+      GoRoute(
+        path: AppPage.signIn.toPath,
+        name: AppPage.signIn.toName,
+        builder: (context, state) => const DesktopAuthPage(),
+      ),
+
       /// Home
       GoRoute(
         path: AppPage.home.toPath,
         name: AppPage.home.toName,
-        builder: (context, state) => const DesktopAuthPage(),
-        // pageBuilder: (context, state) => const MaterialPage<void>(
-        //   key: _pageKey,
-        //   child: RootLayout(
-        //     key: _scaffoldKey,
-        //     currentIndex: 0,
-        //     mobile: HomePage(),
-        //     tablet: HomePage(),
-        //   ),
-        // ),
+        // builder: (context, state) => const DesktopAuthPage(),
+        pageBuilder: (context, state) => const MaterialPage<void>(
+          key: _pageKey,
+          child: RootLayout(
+            key: _scaffoldKey,
+            currentIndex: 0,
+            mobile: HomePage(),
+            tablet: HomePage(),
+          ),
+        ),
       ),
 
       /// Widgets
@@ -134,5 +142,22 @@ class AppRouter {
         ),
       ),
     ),
+
+    // Redirect
+    redirect: (context, state) {
+      // --- 1 ---
+      final bool loggedIn = authBloc.state is AuthenticatedState;
+      final bool loggingIn = state.matchedLocation == AppPage.signIn.toPath;
+      //final bool signUp = state.subloc == AppPage.signUp.toPath;
+      final bool loading = authBloc.state is AuthLoadingState;
+      //final bool loading = state.subloc == AppPage.loading.toPath;
+
+      if (loading) return AppPage.loading.toPath;
+      if (!loggedIn) return loggingIn ? null : AppPage.signIn.toPath;
+      // if (!loggedIn && !loggingIn && !signUp)
+      //   return signUp ? null : AppPage.signUp.toPath;
+      //if (loggingIn) return AppPage.home.toPath;
+      return null;
+    },
   );
 }

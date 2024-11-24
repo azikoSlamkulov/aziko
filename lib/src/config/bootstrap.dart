@@ -5,6 +5,7 @@ import 'package:aziko/src/core/domain/di/locator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../module/auth/auth.dart';
 import '../module/widgets/e_shop/e_shop.dart';
 import 'theme/bloc/theme_bloc.dart';
 
@@ -38,9 +39,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         ),
 
         /// Auth
-        // BlocProvider<AuthBloc>(
-        //   create: (context) => sl<AuthBloc>()..add(GetCurrentUserEvent()),
-        // ),
+        BlocProvider<AuthBloc>(
+          create: (context) => sl<AuthBloc>()..add(GetCurrentUserEvent()),
+        ),
 
         BlocProvider<ProductBloc>(create: (context) => sl<ProductBloc>()),
         // //BlocProvider<ProductCubit>(create: (context) => sl<ProductCubit>()),

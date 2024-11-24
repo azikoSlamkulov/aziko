@@ -1,7 +1,9 @@
 import 'package:aziko/src/module/auth/presentation/widgets/action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';
+import '../../auth.dart';
 import 'widgets.dart';
 
 class SignInWidget extends StatefulWidget {
@@ -133,7 +135,11 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                       ),
                       const SizedBox(height: 64),
-                      actionButton('LOGIN'),
+                      actionButton('LOGIN', () {
+                        BlocProvider.of<AuthBloc>(context).add(
+                          const SignInWithEmailEvent('', ''),
+                        );
+                      }),
                       const SizedBox(height: 32),
                       GestureDetector(
                         onTap: () {
@@ -166,7 +172,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 70),
+                      const SizedBox(height: 50),
                       // GestureDetector(
                       //   onTap: () {
                       //     widget.onSocialSelected();
